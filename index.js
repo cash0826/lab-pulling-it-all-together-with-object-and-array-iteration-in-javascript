@@ -114,3 +114,47 @@ function gameObject() {
         },
     };
 }
+
+//takes a player’s name and returns their points scored.
+function numPointsScored(playerName) {
+    const game = gameObject ()
+    for (const teamKey in game) {
+        const team = game[teamKey];
+        if (playerName in team.players) {
+            return team.players[playerName].points
+        };
+    };
+};
+
+//takes a player’s name and returns their shoe size.
+function shoeSize(playerName) {
+    const game = gameObject ();
+    for (const teamKey in game) {
+        const team = game[teamKey];
+        if (playerName in team.players) {
+            return team.players[playerName].shoe
+        };
+    };
+};
+
+// Takes a team name as input and returns an array of the team’s colors.
+function teamColors(teamName) {
+    const game = gameObject ();
+    for (const teamKey in game) {
+        const team = game[teamKey];
+        if (team.teamName === teamName) {
+            return team.colors;
+        };
+    };
+};
+
+// Returns an array of both team names
+function teamName() {
+    const game = gameObject ();
+    const names = [];
+    for (const teamKey in game) {
+        const team = game[teamKey];
+        names.push(team.teamName);
+    }
+    return names;
+};
