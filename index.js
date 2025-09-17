@@ -149,7 +149,7 @@ function teamColors(teamName) {
 };
 
 // Returns an array of both team names
-function teamName() {
+function teamNames() {
     const game = gameObject ();
     const names = [];
     for (const teamKey in game) {
@@ -157,4 +157,50 @@ function teamName() {
         names.push(team.teamName);
     }
     return names;
+};
+
+
+// Takes a team name as input and returns an array of all players’ jersey numbers on that team
+function playerNumbers(teamName) {
+    const game = gameObject ();
+    const jerseyNumbers = [];
+    for (const teamKey in game) {
+        const team = game[teamKey]
+        if (team.teamName === teamName)
+            for (const player in team.players) {
+                jerseyNumbers.push(team.players[player].number);
+            };
+    };
+    return jerseyNumbers;
+};
+
+//Takes a player’s name as input and returns an object with all stats for that player
+function playerStats(playerName) {
+    const game = gameObject ();
+    for (const teamKey in game) {
+        const team = game[teamKey];
+        if (playerName in team.players) {
+            return team.players[playerName];
+            };
+    };
+};
+
+//Returns the number of rebounds for the player with the largest shoe size.
+function bigShoeRebounds () {
+    const game = gameObject ();
+    let largestShoeSize = 0;
+    let rebounds = 0;
+    for (const teamKey in game) {
+        const team = game[teamKey];
+        for (const playerName in team.players) {
+            const player = team.players[playerName];
+            if (player.shoe > largestShoeSize) {
+                largestShoeSize = player.shoe;
+                console.log(player.shoe)
+                rebounds = player.rebounds;
+                console.log(rebounds)
+            };
+        };
+    };
+    return rebounds;
 };
